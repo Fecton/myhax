@@ -51,6 +51,7 @@ function start(){
         echo "[+] Successfully started!"
     else
         echo "[-] Download neccessary software!"
+    fi
 }
 
 function stop(){
