@@ -81,19 +81,19 @@ while [ 1 ]
 do
 	read action
 
-	if [[ $action -eq 0  ]]; then
+	if [[ $action = "0" ]]; then
 		show_list
-	elif [[ $action -eq 1 ]]; then
+	elif [[ $action = "1" ]]; then
 		get_driver
-	elif [[ $action -eq 2  ]]; then
+	elif [[ $action = "2" ]]; then
 		driver_start
 		break
-	elif [[ $action -eq 3 ]]; then
+	elif [[ $action = "3" ]]; then
 		driver_stop
 		break
-	elif [[ $action -eq 5 ]]; then
+	elif [[ $action = "4" ]]; then
 		delete_driver
-	elif [[ $action -eq 5 ]]; then
+	elif [[ $action = "5" ]]; then
 		exit
 	else
 		echo "[-] Try again!"
