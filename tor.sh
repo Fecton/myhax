@@ -26,8 +26,9 @@ function show_menu(){
     echo "3. Stop TOR + toriptables2"
     echo "4. Force change IP-address"
     echo "5. Show IP"
-    echo "6. Exit"
-	echo "--- ---"
+    echo "6. Delete TOR + toriptables2"
+    echo "7. Exit"
+    echo "--- ---"
 }
 
 function install(){
@@ -58,11 +59,22 @@ function stop(){
 
 function force_change_ip(){
     sudo kill -HUP $(pidof tor)
+    echo "[+] Successfully changed!"
 }
 
 function show_ip(){
+    echo "[+] Your IP:"
     wget -qO- eth0.me
 }
+
+function delete_tor(){
+    stop
+    sudo apt purge tor
+    cd ~/tools/
+    sudo rm -r toriptables2
+    echo "Successfully deleted!"
+}
+
 
 show_menu
 while [ 1 ]
@@ -85,7 +97,9 @@ do
     elif [[ $action -eq 5 ]]; then
         show_ip
 	echo "--- ---"
-    elif [[ $action -eq 6 ]]; then
+    elif [[ $action -eq 7 ]]; then
+    	delete_tor
+    elif [[ $action -eq 7 ]]; then
         echo "[+] Bye!"
         exit
     fi
