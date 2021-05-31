@@ -72,6 +72,7 @@ function delete_driver(){
 		echo "--- ---"
 	else
 		echo "[-] Exitting!"
+	fi
 }
 
 show_list
