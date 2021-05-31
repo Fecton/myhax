@@ -44,10 +44,13 @@ function install(){
 }
 
 function start(){
-    cd ~/tools/toriptables2/
-    sudo systemctl start tor
-    sudo python2 toriptables2.py -l
-    echo "[+] Successfully started!"
+    if [[ -d ~/tools/toriptables2 ]]; then
+        cd ~/tools/toriptables2/
+        sudo systemctl start tor
+        sudo python2 toriptables2.py -l
+        echo "[+] Successfully started!"
+    else
+        echo "[-] Download neccessary software!"
 }
 
 function stop(){
@@ -69,10 +72,10 @@ function show_ip(){
 
 function delete_tor(){
     stop
-    sudo apt purge tor
+    sudo apt -y purge tor
     cd ~/tools/
     sudo rm -r toriptables2
-    echo "Successfully deleted!"
+    echo "[+] Successfully deleted!"
 }
 
 
@@ -80,31 +83,28 @@ show_menu
 while [ 1 ]
 do
     read action
-    if [[ $action -eq 0 ]]; then
+    if [[ $action = "0" ]]; then
         show_menu
-    elif [[ $action -eq 1 ]]; then
+    elif [[ $action = "1" ]]; then
         install
 	echo "--- ---"
-    elif [[ $action -eq 2 ]]; then
+    elif [[ $action = "2" ]]; then
         start
 	echo "--- ---"
-    elif [[ $action -eq 3 ]]; then
+    elif [[ $action = "3" ]]; then
         stop
 	echo "--- ---"
-    elif [[ $action -eq 4 ]]; then
+    elif [[ $action = "4" ]]; then
         force_change_ip
 	echo "--- ---"
-    elif [[ $action -eq 5 ]]; then
+    elif [[ $action = "5" ]]; then
         show_ip
 	echo "--- ---"
-    elif [[ $action -eq 7 ]]; then
+    elif [[ $action = "6" ]]; then
     	delete_tor
-    elif [[ $action -eq 7 ]]; then
+    elif [[ $action = "7" ]]; then
         echo "[+] Bye!"
+        echo "--- ---" 
         exit
     fi
 done
-
-
-
-
