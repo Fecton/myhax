@@ -63,6 +63,7 @@ function stop(){
 
 function force_change_ip(){
     sudo kill -HUP $(pidof tor)
+    show_ip
     echo "[+] Successfully changed!"
 }
 
