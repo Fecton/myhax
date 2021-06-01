@@ -65,7 +65,7 @@ function force_change_ip(){
 }
 
 function show_ip(){
-    echo "[+] Your IP:"
+    echo -n "[+] Your IP:"
     wget -qO- eth0.me
 }
 
@@ -82,7 +82,9 @@ if [[ $(uname -o) != "GNU/Linux" ]]; then
 	echo "[+] But you can download driver! Enter: 1"
 	echo "--- ---"
 	read reaction
-	if [[ $reaction == 1 ]]; then
+	if [[ $reaction = "sudo" ]]; then
+		echo "[+] SUDO"
+	elif [[ $reaction = "1" ]]; then
 		get_driver
 	else
 		echo "[-] Exitting!"
