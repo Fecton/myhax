@@ -45,7 +45,7 @@ function get_driver(){
 function driver_start(){
 	clear
 	cd ~/tools/LCD-show/
-	echo -n "[?] Are you sure? y/n: "
+	echo -n "[?] Are you sure? Display: LCD 2.9inch y/n: "
 	read yes_or_no
 	echo "--- ---"
 	if [[ $yes_or_no == "y" ]];then
@@ -91,9 +91,9 @@ if [[ $(uname -o) != "GNU/Linux" ]]; then
 	echo "[+] But you can download driver! Enter: 1"
 	echo "--- ---"
 	read reaction
-	if [[ $reaction = "sudo" ]]; then
+	if [[ $reaction == "sudo" ]]; then
 		echo "[+] SUDO"
-	elif [[ $reaction = "1" ]]; then
+	elif [[ $reaction == "1" ]]; then
 		get_driver
 	else
 		echo "[-] Exitting!"
@@ -101,22 +101,21 @@ if [[ $(uname -o) != "GNU/Linux" ]]; then
 	fi
 fi
 
-
 # PARSING ARGUMENTS
-if ! [[ $1 = "" ]]; then
-	if [[ $1 = "help" ]] || [[ $1 = "-h" ]]; then
+if ! [[ $1 == "" ]]; then
+	if [[ $1 == "help" ]] || [[ $1 == "-h" ]]; then
 		show_arguments
 		exit
-	elif [[ $1 = "install" ]] || [[ $1 = "-i" ]]; then
+	elif [[ $1 == "install" ]] || [[ $1 == "-i" ]]; then
 		get_driver
 		exit
-	elif [[ $1 = "start" ]] || [[ $1 = "-s" ]]; then
+	elif [[ $1 == "start" ]] || [[ $1 == "-s" ]]; then
 		driver_start
 		exit
-	elif [[ $1 = "hdmi" ]] || [[ $1 = "-H" ]]; then
+	elif [[ $1 == "hdmi" ]] || [[ $1 == "-H" ]]; then
 		driver_stop
 		exit
-	elif [[ $1 = "delete" ]] || [[ $1 = "-d" ]]; then
+	elif [[ $1 == "delete" ]] || [[ $1 == "-d" ]]; then
 		delete_driver
 		exit
 	else
@@ -130,19 +129,19 @@ else
 	do
 		read action
 
-		if [[ $action = "0" ]]; then
+		if [[ $action == "0" ]]; then
 			show_list
-		elif [[ $action = "1" ]]; then
+		elif [[ $action == "1" ]]; then
 			get_driver
-		elif [[ $action = "2" ]]; then
+		elif [[ $action == "2" ]]; then
 			driver_start
 			break
-		elif [[ $action = "3" ]]; then
+		elif [[ $action == "3" ]]; then
 			driver_stop
 			break
-		elif [[ $action = "4" ]]; then
+		elif [[ $action == "4" ]]; then
 			delete_driver
-		elif [[ $action = "5" ]]; then
+		elif [[ $action == "5" ]]; then
 			exit
 		else
 			echo "[-] Try again!"

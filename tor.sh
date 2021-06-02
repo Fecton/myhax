@@ -19,17 +19,19 @@ function show_menu(){
 }
 
 function show_arguments(){
-    echo "- help     || -h"
-    echo "- install  || -i"
-    echo "- start    || -s"
-    echo "- stop     || -S"
-    echo "- changeIP || -c"
-    echo "- ip       || -ip"
-    echo "- delete   || -d"
+    echo "      help     || -h"
+    echo "      install  || -i"
+    echo "      start    || -s"
+    echo "      stop     || -S"
+    echo "      changeIP || -c"
+    echo "      ip       || -ip"
+    echo "      delete   || -d"
 }
 
 function install(){
+    clear
     install_necessary
+    echo "[+] Completed installing neccessary software!"
     sudo apt-get -y install tor
     cd ~
     if ! [[ -d tools ]]; then
@@ -77,42 +79,45 @@ function delete_tor(){
     echo "[+] Successfully deleted!"
 }
 
-if [[ $(uname -o) != "GNU/Linux" ]]; then
-	echo "[-] Supported only on GNU/Linux!"
-	echo "[+] But you can download driver! Enter: 1"
-	echo "--- ---"
-	read reaction
-	if [[ $reaction = "sudo" ]]; then
-		echo "[+] SUDO"
-	elif [[ $reaction = "1" ]]; then
-		get_driver
-	else
-		echo "[-] Exitting!"
-		exit
-	fi
+if [[ $1 == "" ]]; then
+    if [[ $(uname -o) != "GNU/Linux" ]]; then
+        echo "[-] Supported only on GNU/Linux!"
+        echo "[+] But you can download driver! Enter: 1"
+        echo "--- ---"
+        read reaction
+        if [[ $reaction == "sudo" ]]; then
+            clear
+            echo "[+] SUDO"
+        elif [[ $reaction == "1" ]]; then
+            get_driver
+        else
+            echo "[+] Exitting!"
+            exit
+        fi
+    fi
 fi
 
 # PARSING ARGUMENTS
-if ! [[ $1 = "" ]]; then
-	if [[ $1 = "help" ]] || [[ $1 = "-h" ]]; then
+if ! [[ $1 == "" ]]; then
+	if [[ $1 == "help" ]] || [[ $1 == "-h" ]]; then
 		show_arguments
 		exit
-	elif [[ $1 = "install" ]] || [[ $1 = "-i" ]]; then
+	elif [[ $1 == "install" ]] || [[ $1 == "-i" ]]; then
 		install
 		exit
-	elif [[ $1 = "start" ]] || [[ $1 = "-s" ]]; then
+	elif [[ $1 == "start" ]] || [[ $1 == "-s" ]]; then
 		start
 		exit
-	elif [[ $1 = "stop" ]] || [[ $1 = "-S" ]]; then
+	elif [[ $1 == "stop" ]] || [[ $1 == "-S" ]]; then
 		stop
 		exit
-	elif [[ $1 = "delete" ]] || [[ $1 = "-d" ]]; then
+	elif [[ $1 == "delete" ]] || [[ $1 == "-d" ]]; then
 		delete_tor
 		exit
-	elif [[ $1 = "ip" ]] || [[ $1 = "-ip" ]]; then
+	elif [[ $1 == "ip" ]] || [[ $1 == "-ip" ]]; then
 		show_ip
 		exit
-	elif [[ $1 = "changeip" ]] || [[ $1 = "-c" ]]; then
+	elif [[ $1 == "changeip" ]] || [[ $1 == "-c" ]]; then
 		force_change_ip
 		exit
     else
@@ -124,26 +129,26 @@ else
     while [ 1 ]
     do
         read action
-        if [[ $action = "0" ]]; then
+        if [[ $action == "0" ]]; then
             show_menu
-        elif [[ $action = "1" ]]; then
+        elif [[ $action == "1" ]]; then
             install
         echo "--- ---"
-        elif [[ $action = "2" ]]; then
+        elif [[ $action == "2" ]]; then
             start
         echo "--- ---"
-        elif [[ $action = "3" ]]; then
+        elif [[ $action == "3" ]]; then
             stop
         echo "--- ---"
-        elif [[ $action = "4" ]]; then
+        elif [[ $action == "4" ]]; then
             force_change_ip
         echo "--- ---"
-        elif [[ $action = "5" ]]; then
+        elif [[ $action == "5" ]]; then
             show_ip
         echo "--- ---"
-        elif [[ $action = "6" ]]; then
+        elif [[ $action == "6" ]]; then
             delete_tor
-        elif [[ $action = "7" ]]; then
+        elif [[ $action == "7" ]]; then
             echo "[+] Bye!"
             echo "--- ---" 
             exit
