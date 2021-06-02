@@ -4,17 +4,6 @@ function install_necessary(){
 	sudo apt -y install git
 }
 
-function show_list(){
-	clear
-	echo "0. Show menu"
-	echo "1. Downdload driver"
-	echo "2. Installing/starting with argument - degresses (default 180)"
-	echo "3. Return to hdmi-mode"
-	echo "4. Delete driver"
-	echo "5. Exit"
-	echo "--- ---"
-}
-
 function show_arguments(){
 	echo "- install  || -i"
 	echo "- start    || -s"
@@ -123,28 +112,6 @@ if ! [[ $1 == "" ]]; then
 		exit
 	fi
 else
-	show_list
-	# START LOOP WITH COMMANDS
-	while [ 1 ]
-	do
-		read action
-
-		if [[ $action == "0" ]]; then
-			show_list
-		elif [[ $action == "1" ]]; then
-			get_driver
-		elif [[ $action == "2" ]]; then
-			driver_start
-			break
-		elif [[ $action == "3" ]]; then
-			driver_stop
-			break
-		elif [[ $action == "4" ]]; then
-			delete_driver
-		elif [[ $action == "5" ]]; then
-			exit
-		else
-			echo "[-] Try again!"
-		fi
-	done
+	echo "--- END ---"
+	exit
 fi

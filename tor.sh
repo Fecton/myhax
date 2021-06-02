@@ -6,18 +6,6 @@ function install_necessary(){
     sudo apt -y install wget
 }
 
-function show_menu(){
-    echo "0. Show this menu"
-    echo "1. Download TOR + toriptables2"
-    echo "2. Start TOR + toriptables2"
-    echo "3. Stop TOR + toriptables2"
-    echo "4. Force change IP-address"
-    echo "5. Show IP"
-    echo "6. Delete TOR + toriptables2"
-    echo "7. Exit"
-    echo "--- ---"
-}
-
 function show_arguments(){
     echo "      help     || -h"
     echo "      install  || -i"
@@ -125,33 +113,6 @@ if ! [[ $1 == "" ]]; then
 		exit
 	fi
 else
-    show_menu
-    while [ 1 ]
-    do
-        read action
-        if [[ $action == "0" ]]; then
-            show_menu
-        elif [[ $action == "1" ]]; then
-            install
-        echo "--- ---"
-        elif [[ $action == "2" ]]; then
-            start
-        echo "--- ---"
-        elif [[ $action == "3" ]]; then
-            stop
-        echo "--- ---"
-        elif [[ $action == "4" ]]; then
-            force_change_ip
-        echo "--- ---"
-        elif [[ $action == "5" ]]; then
-            show_ip
-        echo "--- ---"
-        elif [[ $action == "6" ]]; then
-            delete_tor
-        elif [[ $action == "7" ]]; then
-            echo "[+] Bye!"
-            echo "--- ---" 
-            exit
-        fi
-    done
+    echo "--- END ---"
+    exit
 fi
