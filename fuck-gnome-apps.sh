@@ -15,17 +15,17 @@ echo -n "Are you sure? y/n: "
 read yes_or_no
 
 if [[ $yes_or_no == "y" ]]; then
-    sudo apt purge gnome-calendar
-    sudo apt purge cheese
-    sudo apt purge deja-dup
-    sudo apt purge gnome-characters
-    sudo apt purge gnome-font-viewer
-    sudo apt purge yelp
-    sudo apt purge sol
-    sudo apt purge rhythmbox
-    sudo apt purge gnome-logs
-    sudo apt purge remmina
-    sudo apt purge seahorse
+    sudo apt -y purge gnome-calendar
+    sudo apt -y purge cheese
+    sudo apt -y purge deja-dup
+    sudo apt -y purge gnome-characters
+    sudo apt -y purge gnome-font-viewer
+    sudo apt -y purge yelp
+    sudo apt -y purge sol
+    sudo apt -y purge rhythmbox
+    sudo apt -y purge gnome-logs
+    sudo apt -y purge remmina
+    sudo apt -y purge seahorse
 else
     echo "EXIT!"
 fi
