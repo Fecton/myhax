@@ -34,7 +34,7 @@ function get_driver(){
 function driver_start(){
 	clear
 	cd ~/tools/LCD-show/
-	echo -n "[?] Are you sure? Display: LCD 2.9inch y/n: "
+	echo -n "[?] Are you sure? Display: LCD 2.8 inch y/n: "
 	read yes_or_no
 	echo "--- ---"
 	if [[ $yes_or_no == "y" ]];then
@@ -57,12 +57,13 @@ function driver_stop(){
 
 function delete_driver(){
 	clear
+	echo "(Please, return to hdmi-mode if you haven't done it)"
 	echo -n "Are you sure? y/n: "
 	read yes_or_no
 	echo "--- ---"
 	if [[ $yes_or_no == "y" ]];then
 		cd ~/tools/
-		if ! [[ -d LCD-show ]]; then
+		if [[ -d LCD-show ]]; then
 			sudo rm -r LCD-show
 			echo "[+] Successfully deleted!"
 			echo "--- ---"
@@ -112,6 +113,6 @@ if ! [[ $1 == "" ]]; then
 		exit
 	fi
 else
-	echo "--- END ---"
+	show_arguments
 	exit
 fi
