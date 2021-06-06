@@ -11,7 +11,7 @@ function show_arguments(){
     echo "      install  || -i"
     echo "      start    || -s"
     echo "      stop     || -S"
-    echo "      changeIP || -c"
+    echo "      changeip || -c"
     echo "      ip       || -ip"
     echo "      delete   || -d"
 }
@@ -113,6 +113,6 @@ if ! [[ $1 == "" ]]; then
 		exit
 	fi
 else
-    echo "--- END ---"
+    show_arguments
     exit
 fi
