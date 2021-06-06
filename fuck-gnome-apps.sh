@@ -16,60 +16,70 @@ read yes_or_no
 
 if [[ $yes_or_no == "y" ]]; then
     clear
+
+    killall -3 $(pidof gnome-calendar)
     sudo apt -y purge gnome-calendar
-    echo "[+] gnome-calendar is removed!"
 
+    killall -3 $(pidof cheese)
     sudo apt -y purge cheese
-    echo "[+] cheese is removed!"
 
+    killall -3 $(pidof deja-dup)
     sudo apt -y purge deja-dup
-    echo "[+] deja-dup is removed!"
 
+    killall -3 $(pidof gnome-characters)
     sudo apt -y purge gnome-characters
-    echo "[+] gnome-characters is removed!"
 
+    killall -3 $(pidof gnome-font-viewer)
     sudo apt -y purge gnome-font-viewer
-    echo "[+] gnome-font-viewer is removed!"
 
+    killall -3 $(pidof yelp)
     sudo apt -y purge yelp
-    echo "[+] yelp is removed!"
 
+    killall -3 $(pidof sol)
     sudo apt -y purge sol
-    echo "[+] sol is removed!"
-
+    
+    killall -3 $(pidof rhythmbox)
     sudo apt -y purge rhythmbox
-    echo "[+] rhythmbox is removed!"
 
+    killall -3 $(pidof gnome-logs)
     sudo apt -y purge gnome-logs
-    echo "[+] gnome-logs is removed!"
 
+    killall -3 $(pidof remmina)
     sudo apt -y purge remmina
-    echo "[+] remmina is removed!"
 
+    killall -3 $(pidof seahorse)
     sudo apt -y purge seahorse
-    echo "[+] seahorse is removed!"
 
-
+    killall -3 $(pidof gnome-screenshot)
     sudo apt -y purge gnome-screenshot
-    echo "[+] gnome-screenshot is removed!"
 
+    killall -3 $(pidof shotwell)
     sudo apt -y purge shotwell
-    echo "[+] shotwell is removed!"
 
+    killall -3 $(pidof gnome-mines)
     sudo apt -y purge gnome-mines
-    echo "[+] gnome-mines is removed!"
 
+    killall -3 $(pidof gnome-mahjongg)
     sudo apt -y purge gnome-mahjongg
-    echo "[+] gnome-mahjongg is removed!"  
 
+    killall -3 $(pidof gnome-power-statistics)
     sudo apt -y purge gnome-power-statistics
-    echo "[+] gnome-power-statistics is removed!" 
 
-    sudo apt -y purge gnome-power-statistics
-    echo "[+] gnome-power-statistics is removed!" 
+    killall -3 $(pidof totem)
+    sudo apt -y purge totem
 
+    killall -3 $(pidof gnome-todo)
+    sudo apt -y purge gnome-todo
 
-    sudo apt autoremove
+    killall -3 $(pidof transmission-gtk)
+    sudo apt -y purge transmission-gtk
+
+    killall -3 $(pidof gnome-sudoku)
+    sudo apt -y purge gnome-sudoku
+
+    # sudo apt -y purge gnome-session-properties
+
+    sudo apt -y autoremove
 
     echo -n "Updates? y/n: "
 
@@ -77,8 +87,8 @@ if [[ $yes_or_no == "y" ]]; then
 
     if [[ $yes_or_no == "y" ]]; then
         clear
-        sudo apt update
-        sudo apt full-upgrade
+        sudo apt -y update
+        sudo apt -y full-upgrade
         echo "[+] Completed with updates!"
     else
         echo "[+-] Completed without updates!"
