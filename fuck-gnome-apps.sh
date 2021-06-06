@@ -74,7 +74,7 @@ if [[ $yes_or_no == "y" ]]; then
     killall -3 $(pidof transmission-gtk)
     sudo apt -y purge transmission-gtk
 
-    killall -3 $(pidof gnome-sudoku)
+    killall -3 $(pidof gnome-sudoku)f
     sudo apt -y purge gnome-sudoku
 
     # sudo apt -y purge gnome-session-properties
