@@ -77,8 +77,6 @@ if [[ $yes_or_no == "y" ]]; then
     killall -3 $(pidof gnome-sudoku)f
     sudo apt -y purge gnome-sudoku
 
-    # sudo apt -y purge gnome-session-properties
-
     sudo apt -y autoremove
 
     echo -n "Updates? y/n: "

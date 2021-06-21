@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-function install_necessary(){
+install_necessary(){
 	sudo apt -y install git
     sudo apt -y install python2
     sudo apt -y install wget
 }
 
-function show_arguments(){
+show_arguments(){
     echo "      help     || -h"
     echo "      install  || -i"
     echo "      start    || -s"
@@ -16,55 +16,69 @@ function show_arguments(){
     echo "      delete   || -d"
 }
 
-function install(){
+install(){
+    if ! [[ -d ~/tools ]]; then
+        mkdir tools
+    elif ! [[ -d /tools/toriptables2 ]]; then
+        echo "[+] Let's download it!"
+    else
+        echo "[-] The driver have already downloaded!"
+        exit
+    fi
+
     clear
     install_necessary
     echo "[+] Completed installing neccessary software!"
     sudo apt-get -y install tor
-    cd ~
-    if ! [[ -d tools ]]; then
-        mkdir tools
-    fi
-    cd tools
+
+    cd ~/tools
     git clone https://github.com/ruped24/toriptables2.git
     echo "[+] Successfully downloaded!"
 }
 
-function start(){
+start(){
     if [[ -d ~/tools/toriptables2 ]]; then
         cd ~/tools/toriptables2/
         sudo systemctl start tor
         sudo python2 toriptables2.py -l
         echo "[+] Successfully started!"
     else
-        echo "[-] Download neccessary software!"
+        echo "[-] Download neccessary software! Use argument '-i'"
     fi
 }
 
-function stop(){
-    cd ~/tools/toriptables2/
-    sudo python2 toriptables2.py -f
-    sudo systemctl stop tor
-    echo "[+] Successfully stopped!"
+stop(){
+    if [[ -d ~/tools/toriptables2 ]]; then
+        cd ~/tools/toriptables2/
+        sudo python2 toriptables2.py -f
+        sudo systemctl stop tor
+        echo "[+] Successfully stopped!"
+    else
+        echo "[-] The driver doesn't exist!"
+    fi
 }
 
-function force_change_ip(){
+force_change_ip(){
     sudo kill -HUP $(pidof tor)
     show_ip
     echo "[+] Successfully changed!"
 }
 
-function show_ip(){
-    echo -n "[+] Your IP:"
+show_ip(){
+    echo -n "[+] Your IP: "
     wget -qO- eth0.me
 }
 
-function delete_tor(){
-    stop
-    sudo apt -y purge tor
-    cd ~/tools/
-    sudo rm -r toriptables2
-    echo "[+] Successfully deleted!"
+delete_tor(){
+    if [[ -d ~/tools/toriptables2 ]]; then
+        stop
+        sudo apt -y purge tor
+        cd ~/tools/
+        sudo rm -r toriptables2
+        echo "[+] Successfully deleted!"
+    else
+        echo "[-] The driver have already deleted!"
+    fi
 }
 
 if [[ $1 == "" ]]; then
@@ -89,30 +103,21 @@ fi
 if ! [[ $1 == "" ]]; then
 	if [[ $1 == "help" ]] || [[ $1 == "-h" ]]; then
 		show_arguments
-		exit
 	elif [[ $1 == "install" ]] || [[ $1 == "-i" ]]; then
 		install
-		exit
 	elif [[ $1 == "start" ]] || [[ $1 == "-s" ]]; then
 		start
-		exit
 	elif [[ $1 == "stop" ]] || [[ $1 == "-S" ]]; then
 		stop
-		exit
 	elif [[ $1 == "delete" ]] || [[ $1 == "-d" ]]; then
 		delete_tor
-		exit
 	elif [[ $1 == "ip" ]] || [[ $1 == "-ip" ]]; then
 		show_ip
-		exit
 	elif [[ $1 == "changeip" ]] || [[ $1 == "-c" ]]; then
 		force_change_ip
-		exit
     else
 		echo "[-] Try again!"
-		exit
 	fi
 else
     show_arguments
-    exit
 fi

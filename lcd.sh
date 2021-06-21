@@ -6,11 +6,11 @@ install_necessary(){
 
 
 show_arguments(){
-	echo "- install  || -i"
-	echo "- start    || -s"
-	echo "- hdmi     || -H"
-	echo "- delete   || -d"
-	echo "- help     || -h"
+	echo "		- install  || -i"
+	echo "		- start    || -s"
+	echo "		- hdmi     || -H"
+	echo "		- delete   || -d"
+	echo "		- help     || -h"
 }
 
 
@@ -19,7 +19,7 @@ get_driver(){
 		mkdir ~/tools
 		echo "[+] Directory was created!"
 	elif ! [[ -d ~/tools/LCD-show ]]; then
-		echo "[+] Let's install it!"
+		echo "[+] Let's download it!"
 	else
 		echo "[-] That had already installed!"
 		exit
