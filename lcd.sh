@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-function install_necessary(){
+install_necessary(){
 	sudo apt -y install git
 }
 
-function show_arguments(){
+
+show_arguments(){
 	echo "- install  || -i"
 	echo "- start    || -s"
 	echo "- hdmi     || -H"
@@ -12,26 +13,31 @@ function show_arguments(){
 	echo "- help     || -h"
 }
 
-function get_driver(){
-	if ! [[ -d ~/tools/ ]] && ! [[ -d ~/tools/LCD-show ]]; then
-		clear
-		install_necessary
-		cd ~
-		if ! [[ -d tools  ]]; then
-			mkdir tools
-			cd tools
-		fi
+
+get_driver(){
+
+	if ! [[ -d ~/tools ]]; then
+		mkdir tools
+		echo "[+] Directory was created!"
+	elif ! [[ -d ~/tools/LCD-show ]]; then
+		echo "[+] Let's install it!"
 	else
 		echo "[-] That had already installed!"
+		exit
 	fi
+
+	clear
+	install_necessary	
 	
+	cd ~/tools/
 	git clone https://github.com/waveshare/LCD-show.git
 	chmod +x LCD-show/LCD28-show
 	echo "[+] Successfully downloaded!"
 	echo "--- ---"
 }
 
-function driver_start(){
+
+driver_start(){
 	clear
 	cd ~/tools/LCD-show/
 	echo -n "[?] Are you sure? Display: LCD 2.8 inch y/n: "
@@ -48,14 +54,16 @@ function driver_start(){
 	fi
 }
 
-function driver_stop(){
+
+driver_stop(){
 	clear
 	cd ~/tools/LCD-show/
 	./LCD-hdmi
 	echo "[+] Tyk-tyk! Restart!"
 }
 
-function delete_driver(){
+
+delete_driver(){
 	clear
 	echo "(Please, return to hdmi-mode if you haven't done it)"
 	echo -n "Are you sure? y/n: "
