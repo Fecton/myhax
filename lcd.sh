@@ -109,28 +109,22 @@ if [[ $(uname -o) != "GNU/Linux" ]]; then
 	fi
 fi
 
+
 # PARSING ARGUMENTS
 if ! [[ $1 == "" ]]; then
 	if [[ $1 == "help" ]] || [[ $1 == "-h" ]]; then
 		show_arguments
-		exit
 	elif [[ $1 == "install" ]] || [[ $1 == "-i" ]]; then
 		get_driver
-		exit
 	elif [[ $1 == "start" ]] || [[ $1 == "-s" ]]; then
 		driver_start
-		exit
 	elif [[ $1 == "hdmi" ]] || [[ $1 == "-H" ]]; then
 		driver_stop
-		exit
 	elif [[ $1 == "delete" ]] || [[ $1 == "-d" ]]; then
 		delete_driver
-		exit
 	else
 		echo "[-] Try again!"
-		exit
 	fi
 else
 	show_arguments
-	exit
 fi
