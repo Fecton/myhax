@@ -15,7 +15,6 @@ show_arguments(){
 
 
 get_driver(){
-
 	if ! [[ -d ~/tools ]]; then
 		mkdir ~/tools
 		echo "[+] Directory was created!"
@@ -38,54 +37,65 @@ get_driver(){
 
 
 driver_start(){
-	clear
-	cd ~/tools/LCD-show/
-	echo -n "[?] Are you sure? Display: LCD 2.8 inch y/n: "
-	read yes_or_no
-	echo "--- ---"
-	if [[ $yes_or_no == "y" ]];then
-		echo -n "[?] Enter degreeses:"
-		read degreeses
-		./LCD28-show $degreeses
-		echo "[+] Bam-bam! Restart!"
+	if [[ -d ~/tools/LCD-show/ ]]; then
+		clear
+		cd ~/tools/LCD-show/
+		echo -n "[?] Are you sure? Display: LCD 2.8 inch y/n: "
+		read yes_or_no
+		echo "--- ---"
+		if [[ $yes_or_no == "y" ]]; then
+			echo -n "[?] Enter degreeses:"
+			read degreeses
+			./LCD28-show $degreeses
+			echo "[+] Bam-bam! Restart!"
+		else
+			echo "[-] Exitting!"
+			exit
+		fi
 	else
-		echo "[-] Exitting!"
-		exit
+		echo "[-] The driver hasn't downloaded! Use argument '-i'"
 	fi
 }
 
 
 driver_stop(){
-	clear
-	cd ~/tools/LCD-show/
-	./LCD-hdmi
-	echo "[+] Tyk-tyk! Restart!"
+	if [[ -d ~/tools/LCD-show/ ]]; then
+		clear
+		cd ~/tools/LCD-show/
+		./LCD-hdmi
+		echo "[+] Tyk-tyk! Reboot!"
+	else
+		echo "[-] Something wrong with driver! Try to redownloaded it."
+	fi
 }
 
 
 delete_driver(){
-	clear
-	echo "(Please, return to hdmi-mode if you haven't done it)"
-	echo -n "Are you sure? y/n: "
-	read yes_or_no
-	echo "--- ---"
-	if [[ $yes_or_no == "y" ]];then
-		cd ~/tools/
-		if [[ -d LCD-show ]]; then
-			sudo rm -r LCD-show
-			echo "[+] Successfully deleted!"
-			echo "--- ---"
+	if [[ -d ~/tools/LCD-show/ ]]; then
+		clear
+		echo "(Please, return to hdmi-mode if you haven't done it)"
+		echo -n "Are you sure? y/n: "
+		read yes_or_no
+		echo "--- ---"
+		if [[ $yes_or_no == "y" ]];then
+			cd ~/tools/
+			if [[ -d LCD-show ]]; then
+				sudo rm -r LCD-show
+				echo "[+] Successfully deleted!"
+				echo "--- ---"
+			fi
 		else
-			echo "[-] Driver's directory doesn't exist!"
+			echo "[-] Exitting!"
 		fi
 	else
-		echo "[-] Exitting!"
+		echo "[-] The driver doesn't exist! :D"
 	fi
 }
 
 # CHECKING OPERATION SYSTEM
 if [[ $(uname -o) != "GNU/Linux" ]]; then
 	echo "[-] Supported only on GNU/Linux!"
+	echo "[+] If it is misunderstanding, please enter 'sudo'"
 	echo "[+] But you can download driver! Enter: 1"
 	echo "--- ---"
 	read reaction
