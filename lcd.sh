@@ -17,7 +17,7 @@ show_arguments(){
 get_driver(){
 
 	if ! [[ -d ~/tools ]]; then
-		mkdir tools
+		mkdir ~/tools
 		echo "[+] Directory was created!"
 	elif ! [[ -d ~/tools/LCD-show ]]; then
 		echo "[+] Let's install it!"
@@ -28,7 +28,7 @@ get_driver(){
 
 	clear
 	install_necessary	
-	
+
 	cd ~/tools/
 	git clone https://github.com/waveshare/LCD-show.git
 	chmod +x LCD-show/LCD28-show
