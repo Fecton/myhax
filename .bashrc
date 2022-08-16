@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export PATH=~/.local/bin/:$PATH
 alias pyclean='find . \
 	\( -type f -name "*.py[co]" -o -type d -name "__pycache__" \) -delete &&
 	echo "Removed pycs and __pycache__"'
@@ -11,11 +12,16 @@ alias l='ls -CF'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias cls='clear'
+alias c='clear'
 alias update='sudo apt update -y && sudo apt upgrade -fy && sudo apt autoremove -y && clear && echo "[+] Updated successfully!"'
 alias dir='dir --color=auto'
 alias vdir='vdir=auto'
 alias isinet='ping 8.8.8.8'
+alias crvenv='python3 -m venv venv/'
+alias venvon='source venv/bin/activate'
+alias venvoff='deactivate'
+alias p3='python3'
+alias ip3='ipython3'
 
 ##	+-----------------------------------+-----------------------------------+
 ##	|                                                                       |

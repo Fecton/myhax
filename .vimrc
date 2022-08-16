@@ -31,6 +31,9 @@ Plug 'ap/vim-css-color'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround'
+Plug 'lervag/vimtex'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-colorscheme-switcher'
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -38,7 +41,12 @@ call plug#end()
 
 " source ~/.vim/plugged/awesome-vim-colorschemes/colors/scheakur.vim
 :set background=dark
-colorscheme iceberg
+" colorscheme iceberg
+" colorscheme materialbox
+" colorscheme molokai
+colorscheme molokayo
+" colorscheme oceanic_material
+" colorscheme purify
 
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-N> :bnext<CR>
